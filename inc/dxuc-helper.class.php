@@ -26,11 +26,16 @@ class DXUC_Helper {
 		if( empty( $internal_user_ids_list ) )
 			return array();
 		
-		$get_comment_parents_by_admin = $wpdb->get_col(
-				"SELECT comment_parent from {$wpdb->prefix}comments WHERE user_id IN ({$internal_user_ids_list}) AND comment_parent != 0" );
-					
-		if( empty( $get_comment_parents_by_admin ) )
+		$query = "SELECT comment_parent from {$wpdb->prefix}comments WHERE user_id IN ({$internal_user_ids_list}) AND comment_parent != 0";
+		$get_comment_parents_by_admin = $wpdb->get_col( $query );
+		if( empty( $get_comment_parents_by_admin ) ){
+			$query = "SELECT comment_parent from {$wpdb->prefix}comments WHERE user_id NOT IN ({$internal_user_ids_list}) AND comment_parent = 0";
+		}
+
+		$get_comment_parents_by_admin = $wpdb->get_col( $query );
+		if( empty( $get_comment_parents_by_admin ) ){
 			return array();
+		}
 
 		$get_comment_parents_by_admin = apply_filters( 'dxuc_filter_comment_parents_by_admin' , $get_comment_parents_by_admin );
 		
