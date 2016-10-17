@@ -18,8 +18,13 @@ class DX_Unanswered_Comments {
 		add_action( 'admin_menu', array( $this, 'add_non_replied_comments_plugin_page' ) );
 		add_filter( 'views_edit-comments', array( $this, 'filter_comment_top_links' ) );
 		add_filter( 'comments_clauses', array( $this, 'filter_only_non_replied_comments' ) );
+		add_filter( 'init', array( $this, 'load_textdomain' ) );
 	}
 	
+	public function load_textdomain() {
+		load_plugin_textdomain( 'dxuc', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
+
 	public function setup() {
 		include_once plugin_dir_path( __FILE__ ) . '/inc/dxuc-helper.class.php';
 	}
