@@ -1,0 +1,44 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: dxuc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-17 15:35+0300\n"
+"PO-Revision-Date: 2016-10-17 15:43+0300\n"
+"Last-Translator: \n"
+"Language-Team: French\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Source-Locale: bg_BG\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Loco-Parser: loco_parse_po\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "DX Unanswered Comments"
+msgstr ""
+
+msgid ""
+"Enter the username of the WordPress user who is supposed to reply to "
+"commenters."
+msgstr ""
+
+msgid "You can several usernames separated by commas."
+msgstr ""
+
+msgid "Enable comment count in the top links comment filters if you need it."
+msgstr ""
+
+msgid "Non-replied"
+msgstr ""
+
+msgid "Non-replied - Top Level"
+msgstr ""
+
+msgid "Authors List"
+msgstr ""
+
+msgid "Comment Count (if enabled adds some extra database load)"
+msgstr ""
