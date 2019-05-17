@@ -22,7 +22,7 @@ function dxuc_get_comments_count( $top_level = false ) {
 
 	$not_spam = "comment_approved != 'spam'";
 
-	$non_replied_comments = DXUC_Helper::get_non_replied_comments( $internal_user_ids_list ); error_log( print_r($non_replied_comments,true));
+	$non_replied_comments = DXUC_Helper::get_non_replied_comments( $internal_user_ids_list );
 	if ( empty( $non_replied_comments ) ) {
 		return 0;
 	}
@@ -36,7 +36,7 @@ function dxuc_get_comments_count( $top_level = false ) {
 	// Filter where clause for getting proper comments
 	$where = DXUC_Helper::filter_comments_and_top_sql( $where, $top_level, $non_replied_comments_list, $internal_user_ids_list );
 
-	$sql .= $where; error_log( $sql );
+	$sql .= $where;
 
 	$count = $wpdb->get_var( $sql );
 
