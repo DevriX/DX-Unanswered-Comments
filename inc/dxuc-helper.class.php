@@ -1,7 +1,17 @@
 <?php
-
+/**
+ * Helper class for the plugin
+ * 
+ * @since	1.0
+ */
 class DXUC_Helper {
 
+	/**
+	 * Hooked from filter_only_non_replied_comments() in the main class
+	 * Get the user ids
+	 * 
+	 * @since	1.0
+	 */
 	public static function get_internal_user_ids_list() {
 		// Read users list from the database
 		$internal_users = get_option( 'dxuc_authors_list', 'admin' );
@@ -20,6 +30,11 @@ class DXUC_Helper {
 		return $internal_user_ids_list;
 	}
 
+	/**
+	 * SQL statement for the hook we used
+	 * 
+	 * @since	1.0
+	 */
 	public static function get_non_replied_comments( $internal_user_ids_list ) {
 		global $wpdb;
 		// Get commented IDs where admin has commented
@@ -56,6 +71,11 @@ class DXUC_Helper {
 		return $non_replied_comments;
 	}
 
+	/**
+	 * Load the user id's after we pulled them
+	 * 
+	 * @since	1.0
+	 */
 	public static function load_user_ids( $internal_users ) {
 		$user_ids = array();
 
@@ -75,6 +95,11 @@ class DXUC_Helper {
 		return $user_ids;
 	}
 
+	/**
+	 * Filter where clause for getting proper comments
+	 * 
+	 * @since	1.0
+	 */
 	public static function filter_comments_and_top_sql( $where, $top_level, $non_replied_comments_list, $internal_user_ids_list ) {
 		$non_replied_comments_list = apply_filters( 'dxuc_filter_allowed_comment_ids', $non_replied_comments_list );
 		$not_spam                  = "comment_approved != 'spam'";
