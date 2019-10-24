@@ -6,7 +6,7 @@
  * Author URI: http://devwp.eu/
  * Version: 1.5
  * License: GPL2+
- * Text Domain: dxuc
+ * Text Domain: dx-unanswered-comments
  *
  */
 
@@ -22,7 +22,7 @@ class DX_Unanswered_Comments {
 	}
 
 	public function load_textdomain() {
-		load_plugin_textdomain( 'dxuc', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'dx-unanswered-comments', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	public function setup() {
@@ -35,8 +35,8 @@ class DX_Unanswered_Comments {
 		if ( ! empty( $dxuc_comment_count ) ) {
 			include_once plugin_dir_path( __FILE__ ) . '/inc/dxuc-add-comment-count-top.php';
 		}
-		$non_replied_text = apply_filters( 'dxuc_non_replied_text', __( 'Non-replied', 'dxuc' ) );
-		$non_replied_root = apply_filters( 'dxuc_non_replied_top_level', __( 'Non-replied - Top Level', 'dxuc' ) );
+		$non_replied_text = apply_filters( 'dxuc_non_replied_text', __( 'Non-replied', 'dx-unanswered-comments' ) );
+		$non_replied_root = apply_filters( 'dxuc_non_replied_top_level', __( 'Non-replied - Top Level', 'dx-unanswered-comments' ) );
 
 		$views['non-replied']      = "<a href='edit-comments.php?comment_status=non_replied'>$non_replied_text</a>";
 		$views['non-replied-root'] = "<a href='edit-comments.php?comment_status=non_replied&top_level=true'>$non_replied_root</a>";
@@ -89,14 +89,14 @@ class DX_Unanswered_Comments {
 
 	public function add_non_replied_comments_plugin_page() {
 		add_submenu_page(
-			'options-general.php', __( 'DX Unanswered Comments', 'dxuc' ),
-			__( 'DX Unanswered Comments', 'dxuc' ), 'manage_options', 'dx-unanswered-comments',
+			'options-general.php', __( 'DX Unanswered Comments', 'dx-unanswered-comments' ),
+			__( 'DX Unanswered Comments', 'dx-unanswered-comments' ), 'manage_options', 'dx-unanswered-comments',
 			array( $this, 'add_plugin_menu_page_callback' )
 		);
 	}
 
 	public function add_plugin_menu_page_callback() {
-		include_once 'dx-unanswered-comments-admin-page.php';
+		include_once 'dxuc-unanswered-comments-admin-page.php';
 	}
 
 	public function add_top_active_link_script( $hook ) {
