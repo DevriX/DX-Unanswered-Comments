@@ -1,3 +1,10 @@
+<?php
+/**
+ * A settings page content for the administration menu
+ * 
+ * @since	1.0
+ */
+?>
 <div class="wrap">
 	<?php
 		$authors_list  = get_option( 'dxuc_authors_list', 'admin' );

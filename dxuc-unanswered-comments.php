@@ -10,8 +10,19 @@
  *
  */
 
+/**
+ * Main class for our plugin
+ * 
+ * @since	1.0
+ */
 class DX_Unanswered_Comments {
 
+	/**
+	 * Class constructor
+	 * All action and filter hook will based as early as constructor class initiated
+	 * 
+	 * @since	1.0
+	 */
 	public function __construct() {
 		$this->setup();
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_top_active_link_script' ) );
@@ -21,14 +32,29 @@ class DX_Unanswered_Comments {
 		add_filter( 'init', array( $this, 'load_textdomain' ) );
 	}
 
+	/**
+	 * Load the text domain for plugin's translation
+	 * 
+	 * @since	1.0
+	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( 'dx-unanswered-comments', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
+	/**
+	 * Initial setup class
+	 * 
+	 * @since	1.0
+	 */
 	public function setup() {
 		include_once plugin_dir_path( __FILE__ ) . '/inc/dxuc-helper.class.php';
 	}
 
+	/**
+	 * Hook into the top links of the Comment page
+	 * 
+	 * @since	1.0
+	 */
 	public function filter_comment_top_links( $views ) {
 		$dxuc_comment_count = get_option( 'dxuc_comment_count', false );
 
@@ -44,6 +70,12 @@ class DX_Unanswered_Comments {
 		return $views;
 	}
 
+	/**
+	 * Hooking on the comment clause
+	 * This will hook to the SQL in pulling the comments data
+	 * 
+	 * @since	1.0
+	 */
 	public function filter_only_non_replied_comments( $clauses ) {
 		global $current_user;
 
@@ -87,6 +119,11 @@ class DX_Unanswered_Comments {
 		return $clauses;
 	}
 
+	/**
+	 * Hook a new custo page on the administrator menu
+	 * 
+	 * @since	1.0
+	 */
 	public function add_non_replied_comments_plugin_page() {
 		add_submenu_page(
 			'options-general.php', __( 'DX Unanswered Comments', 'dx-unanswered-comments' ),
@@ -95,10 +132,22 @@ class DX_Unanswered_Comments {
 		);
 	}
 
+	/**
+	 * A callback function for the submenu page
+	 * This is where we display the content of `DX Unanswered Comments` settings page
+	 * 
+	 * @since	1.0
+	 */
 	public function add_plugin_menu_page_callback() {
 		include_once 'dxuc-unanswered-comments-admin-page.php';
 	}
 
+	/**
+	 * Assets for the administrator page
+	 * This will be on the edit comment page
+	 * 
+	 * @since	1.0
+	 */
 	public function add_top_active_link_script( $hook ) {
 		if ( 'edit-comments.php' === $hook ) {
 			wp_enqueue_script( 'dxuc-script', plugin_dir_url( __FILE__ ) . '/js/dxuc-script.js' );

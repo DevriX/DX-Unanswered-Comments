@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * Page content hooked from filter_comment_top_links()
+ * in the main class. This display the content when `Non-replied` link has been clicked.
+ * 
+ * @since	1.0
+ */
 
 add_filter( 'dxuc_non_replied_text', 'dxuc_filter_non_replied_text_top' );
 add_filter( 'dxuc_non_replied_top_level', 'dxuc_filter_non_replied_top_level_text_top' );
