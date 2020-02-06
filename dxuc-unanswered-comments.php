@@ -3,7 +3,7 @@
  * Plugin Name: DX Unanswered Comments
  * Description: Filter your admin comments that have not received a reply by internal user yet.
  * Author: nofearinc
- * Author URI: http://devwp.eu/
+ * Author URI: https://devrix.com/
  * Version: 1.5
  * License: GPL2+
  * Text Domain: dx-unanswered-comments

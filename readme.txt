@@ -2,9 +2,11 @@
 Contributors: nofearinc, bloggen.co
 Tags: comments, unanswered, replies, admin
 Requires at least: 3.2
-Tested up to: 4.7
-Stable tag: 1.4
-License: GPLv2+
+Tested up to: 5.2.5
+Stable tag: 1.5
+Requires PHP: 5.6
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Filter your admin comments that have not received a reply by internal user yet.
 
@@ -27,6 +29,9 @@ Ignore pingbacks from the loop. You could define a list with admin usernames tha
 2. Options panel in the widget
 
 == Changelog ==
+
+= 1.5 =
+* Fixed text-domain
 
 = 1.4 =
 * Fix a bug listing all when no actual comments are pending
