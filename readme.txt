@@ -1,6 +1,5 @@
 === DX Unanswered Comments ===
 Contributors: nofearinc, bloggen.co
-Donate link: http://bloggen.co
 Tags: comments, unanswered, replies, admin
 Requires at least: 3.2
 Tested up to: 4.7
@@ -13,7 +12,6 @@ Filter your admin comments that have not received a reply by internal user yet.
 
 Filter your admin comments that have not received a reply by internal user yet.
 
-[youtube https://www.youtube.com/watch?v=Jb9MkPPXB_w&feature=youtu.be]
 
 Ignore pingbacks from the loop. You could define a list with admin usernames that would answer from your team.
 
