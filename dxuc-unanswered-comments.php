@@ -30,6 +30,12 @@ class DX_Unanswered_Comments {
 		add_filter( 'views_edit-comments', array( $this, 'filter_comment_top_links' ) );
 		add_filter( 'comments_clauses', array( $this, 'filter_only_non_replied_comments' ) );
 		add_filter( 'init', array( $this, 'load_textdomain' ) );
+		add_filter( 'manage_edit-comments_columns', array( $this, 'add_comments_column' ) );
+		add_filter( 'manage_comments_custom_column', array( $this, 'add_comments_button' ), 10, 2 );
+		add_action( 'wp_ajax_mark_comment_as_replied', array( $this, 'mark_comment_as_replied' ) );
+		add_action( 'wp_ajax_nopriv_mark_comment_as_replied', array( $this, 'mark_comment_as_replied' ) );
+		add_action( 'wp_ajax_mark_comment_as_non_replied', array( $this, 'mark_comment_as_non_replied' ) );
+		add_action( 'wp_ajax_nopriv_mark_comment_as_non_replied', array( $this, 'mark_comment_as_non_replied' ) );
 	}
 
 	/**
@@ -151,10 +157,51 @@ class DX_Unanswered_Comments {
 	public function add_top_active_link_script( $hook ) {
 		if ( 'edit-comments.php' === $hook ) {
 			wp_enqueue_script( 'dxuc-script', plugin_dir_url( __FILE__ ) . '/js/dxuc-script.js' );
+			wp_enqueue_script( 'dxuc-comments', plugin_dir_url( __FILE__ ) . '/js/dxuc-comments.js', array( 'jquery' ) );
 			wp_enqueue_style( 'dxuc-style', plugin_dir_url( __FILE__ ) . '/css/dxuc-style.css' );
 		}
 	}
 
+	function add_comments_column( $columns ) {
+		$columns['mark_as_replied_column'] = __( 'Mark as replied' );
+		return $columns;
+	}
+
+	function add_comments_button( $column, $comment_ID ) {
+		$meta_key = "marked_as_replied";
+		
+		if ( 'mark_as_replied_column' == $column ) {
+			if ( get_comment_meta( $comment_ID, $meta_key, true ) == 1 ) {
+				echo '<a class="mark_as_non_replied" href="#" data-value="' . $comment_ID . '" >Mark as non-replied</a>';
+			} else {
+				echo '<a class="mark_as_replied" href="#" data-value="' . $comment_ID . '" >Mark as replied</a>';
+			}
+		}
+	}
+
+	public function mark_comment_as_replied() {
+		$comment_id = sanitize_text_field( $_POST['selected_comment_id'] );
+		$meta_key = "marked_as_replied";
+		
+		if ( get_comment_meta( $comment_id, $meta_key, true ) == 0) {
+			update_comment_meta( $comment_id, $meta_key, 1);
+		} elseif ( empty( get_comment_meta( $comment_id, $meta_key, true ) ) ) {
+			add_comment_meta( $comment_id, $meta_key, 1 );
+		}
+
+		wp_die();
+	}
+
+	public function mark_comment_as_non_replied() {
+		$comment_id = sanitize_text_field( $_POST['selected_comment_id'] );
+		$meta_key = "marked_as_replied";
+
+		if ( get_comment_meta( $comment_id, $meta_key, true ) == 1) {
+			update_comment_meta( $comment_id, $meta_key, 0);
+		}
+
+		wp_die();
+	}
 }
 
 new DX_Unanswered_Comments();
