@@ -4,7 +4,7 @@
  * Description: Filter your admin comments that have not received a reply by internal user yet.
  * Author: nofearinc
  * Author URI: http://devwp.eu/
- * Version: 1.5
+ * Version: 1.6
  * License: GPL2+
  * Text Domain: dx-unanswered-comments
  *
