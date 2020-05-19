@@ -4,7 +4,7 @@ Donate link: http://bloggen.co
 Tags: comments, unanswered, replies, admin
 Requires at least: 3.2
 Tested up to: 4.7
-Stable tag: 1.4
+Stable tag: 1.6
 License: GPLv2+
 
 Filter your admin comments that have not received a reply by internal user yet.
@@ -29,6 +29,9 @@ Ignore pingbacks from the loop. You could define a list with admin usernames tha
 2. Options panel in the widget
 
 == Changelog ==
+
+= 1.6 =
+* Implemented feature, where user can mark a comment as replied and mark as not replied
 
 = 1.4 =
 * Fix a bug listing all when no actual comments are pending
