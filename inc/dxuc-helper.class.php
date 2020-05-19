@@ -42,7 +42,7 @@ class DXUC_Helper {
 			return array();
 		}
 
-		$query                        = "SELECT comment_parent from {$wpdb->prefix}comments WHERE user_id IN ({$internal_user_ids_list}) AND comment_parent != 0";
+		$query = "SELECT comment_parent from {$wpdb->prefix}comments WHERE user_id IN ({$internal_user_ids_list}) AND comment_parent != 0";
 		$get_comment_parents_by_admin = $wpdb->get_col( $query );
 		if ( empty( $get_comment_parents_by_admin ) ) {
 			$query = "SELECT comment_parent from {$wpdb->prefix}comments WHERE user_id NOT IN ({$internal_user_ids_list}) AND comment_parent = 0";
@@ -66,6 +66,14 @@ class DXUC_Helper {
 
 		if ( empty( $non_replied_comments ) ) {
 			return array();
+		}
+
+		$meta_key = "marked_as_replied";
+		foreach( $non_replied_comments as $key => $comment_id ) {
+
+			if ( get_comment_meta( $comment_id, $meta_key, true ) == 1 ) {
+				unset($non_replied_comments[$key]);
+			}
 		}
 
 		return $non_replied_comments;
